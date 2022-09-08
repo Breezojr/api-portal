@@ -4,7 +4,6 @@ import { UserService } from "src/modules/user/providers/user.service";
 import { CurrentUser } from "../auth-user.decorator";
 import { JwtAuthGuard } from "../auth.guard";
 import { AuthService } from "../auth.service";
-import { ChangePasswordRequest } from "../dto/change-password-request.dto";
 import { LoginRequestDto } from "../dto/login-request.dto";
 import { LoginResponseDto } from "../dto/login-response.dto";
 import { RegisterRequestDto } from "../dto/register-request.dto";
