@@ -1,4 +1,5 @@
 import { Body, Controller, Post, UseGuards } from "@nestjs/common";
+import { UserInfoResponseDto } from "src/modules/user/dto/user-info-response.dto";
 import { User } from "src/modules/user/models/user.model";
 import { UserService } from "src/modules/user/providers/user.service";
 import { CurrentUser } from "../auth-user.decorator";
@@ -35,7 +36,7 @@ export class AuthController {
 
     @UseGuards(JwtAuthGuard)
     @Post('user-profile')
-    async getUserProfile(@CurrentUser() user: User): Promise<any> {
+    async getUserProfile(@CurrentUser() user: User): Promise<UserInfoResponseDto> {
         return this.userService.getUserProfile(user);
     }
 

@@ -4,6 +4,7 @@ import {
 } from '@nestjs/common';
 import { RegisterRequestDto } from 'src/modules/auth/dto/register-request.dto';
 import { RegisterResponseDto } from 'src/modules/auth/dto/register-response.dto';
+import { UserInfoResponseDto } from '../dto/user-info-response.dto';
 import { User } from '../models/user.model';
 
 
@@ -40,19 +41,25 @@ export class UserService {
       throw new BadRequestException('Process Fail Internally')
     }
   }
-  
-  async getUserProfile(user: User) {
-    this.logger.log({ ...user })
-    const userInfo = await User.findOne({
-      where: {
-        id: user.id
-      }
-    })
-    if (!userInfo) {
-      throw new NotFoundException(' User was not found')
-    }
 
-    const { password, ...result } = userInfo
-    return result
+  async getUserProfile(user: User): Promise<UserInfoResponseDto> {
+    try {
+      const userInfo = await User.findOne({
+        where: {
+          id: user.id
+        }
+      })
+      if (!userInfo) {
+        throw new NotFoundException(' User was not found')
+      }
+
+      const response = new UserInfoResponseDto()
+      response.firstName = user.firstName
+      response.lastName = user.lastName
+      response.email = user.email
+      return response
+    } catch (err) {
+      throw new BadRequestException(err)
+    }
   }
 }
