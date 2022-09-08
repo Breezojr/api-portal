@@ -3,7 +3,6 @@ import { ConnectionOptions as BaseConnectionOptions } from 'typeorm';
 import { DEFAULT_CONNECTION } from './constants';
 require('dotenv').config();
 
-
 type ConnectionOptions = BaseConnectionOptions & {
     seeds?: string[];
     factories?: string[];

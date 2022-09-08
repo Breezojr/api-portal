@@ -70,7 +70,6 @@ export class AuthService {
         return user;
     }
 
-
     async logout(user: User): Promise<boolean> {
         const result = await AccessToken.createQueryBuilder('access_token')
             .where('userId = :userId and userType = :userType', { userId: user.id, userType: 'user' })
@@ -79,5 +78,4 @@ export class AuthService {
 
         return result.affected > 0;
     }
-
 }

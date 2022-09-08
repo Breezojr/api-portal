@@ -7,7 +7,6 @@ import { RegisterResponseDto } from 'src/modules/auth/dto/register-response.dto'
 import { UserInfoResponseDto } from '../dto/user-info-response.dto';
 import { User } from '../models/user.model';
 
-
 @Injectable()
 export class UserService {
   private readonly logger = new Logger(UserService.name)

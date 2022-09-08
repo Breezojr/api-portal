@@ -12,7 +12,6 @@ import { RegisterResponseDto } from "../dto/register-response.dto";
 
 @Controller('auth')
 export class AuthController {
-
     constructor(
         private authService: AuthService,
         private userService: UserService
@@ -39,5 +38,4 @@ export class AuthController {
     async getUserProfile(@CurrentUser() user: User): Promise<UserInfoResponseDto> {
         return this.userService.getUserProfile(user);
     }
-
 }
