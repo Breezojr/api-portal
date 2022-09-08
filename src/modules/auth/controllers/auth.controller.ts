@@ -8,6 +8,7 @@ import { ChangePasswordRequest } from "../dto/change-password-request.dto";
 import { LoginRequestDto } from "../dto/login-request.dto";
 import { LoginResponseDto } from "../dto/login-response.dto";
 import { RegisterRequestDto } from "../dto/register-request.dto";
+import { RegisterResponseDto } from "../dto/register-response.dto";
 
 @Controller('auth')
 export class AuthController {
@@ -18,7 +19,7 @@ export class AuthController {
     ) { }
 
     @Post('register')
-    async register(@Body() body: RegisterRequestDto): Promise<User> {
+    async register(@Body() body: RegisterRequestDto): Promise<RegisterResponseDto> {
         return this.authService.register(body);
     }
 

@@ -1,7 +1,7 @@
 import { ArgsType, Field } from '@nestjs/graphql';
 
 @ArgsType()
-export class RegisterRequestDto {
+export class RegisterResponseDto {
     @Field()
     firstName: string;
 
@@ -9,12 +9,5 @@ export class RegisterRequestDto {
     lastName: string;
 
     @Field()
-    
     email: string;
-
-    @Field()
-    password: string;
-
-    @Field()
-    confirmPassword: string;
 }

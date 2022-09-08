@@ -24,13 +24,12 @@ export class AccessTokenService {
                 id: tokenId,
                 isRevoked: false,
             },
-            // relations: ['user']
         });
 
         if (!token)
             throw new AuthenticationError('Session expired! Please login.');
 
-        // Retrieve user by type: customer/user
+        // Retrieve user 
         const user = User.findOne({
             where: { id: token.userId }
         });

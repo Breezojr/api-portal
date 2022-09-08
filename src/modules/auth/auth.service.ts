@@ -9,27 +9,19 @@ import { AuthenticationError } from 'apollo-server-express';
 import { Validator } from 'src/shared/helpers/validator.helper';
 import { AccessTokenService } from './providers/access-token.service';
 import { RegisterRequestDto } from './dto/register-request.dto';
+import { RegisterResponseDto } from './dto/register-response.dto';
 
 @Injectable()
 export class AuthService {
-    private readonly logger = new Logger('AuthService');
-
     constructor(
         protected readonly userService: UserService,
         protected readonly accessTokenService: AccessTokenService,
     ) { }
 
-    async register(body: RegisterRequestDto): Promise<User> {
-        const user = new User()
-        user.firstName = body.firstName
-        user.lastName = body.lastName
-        user.email = body.email
-        user.password = body.password
+    private readonly logger = new Logger('AuthService');
 
-        await user.save()
-
-        return user
-       
+    async register(body: RegisterRequestDto): Promise<RegisterResponseDto> {
+        return this.userService.register(body)
     }
 
     async login(loginDto: LoginRequestDto): Promise<LoginResponseDto> {
